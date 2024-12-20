@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Animal Facts API
+  description: An API for fetching random and specific animal facts.
+  version: 1.0.0
+paths:
+  /api/test:
+    get:
+      summary: Check API status
+      responses:
+        '200':
+          description: API is running
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleResponse'
+  /facts/duck/random:
+    get:
+      summary: Get a random duck fact
+      responses:
+        '200':
+          description: A random duck fact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DuckFact'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleResponse'
+  /facts/duck/{id}:
+    get:
+      summary: Get a specific duck fact by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the duck fact to retrieve
+      responses:
+        '200':
+          description: A specific duck fact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DuckFact'
+        '400':
+          description: Bad request (invalid ID format)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleResponse'
+        '404':
+          description: No duck fact found with the specified ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleResponse'
+components:
+  schemas:
+    DuckFact:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        type:
+          type: string
+          example: "duck"
+        text:
+          type: string
+          example: "Ducks have waterproof feathers."
+        length:
+          type: integer
+          example: 29
+    SimpleResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Operation completed successfully."
