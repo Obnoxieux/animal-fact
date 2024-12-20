@@ -3,6 +3,13 @@ info:
   title: Animal Facts API
   description: An API for fetching random and specific animal facts.
   version: 1.0.0
+servers:
+  -
+    url: 'https://facts.obnx.dev'
+    description: 'Production'
+  -
+    url: 'http://localhost:8090'
+    description: 'Development'
 paths:
   /api/test:
     get:
