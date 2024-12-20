@@ -1,2 +1,8 @@
 ### Test if app is running
 GET http://localhost:8090/api/test
+
+### Get single duck fact
+GET /facts/duck/{{id}}
+
+### Get random duck fact
+GET /facts/duck/random
