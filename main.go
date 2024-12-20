@@ -35,7 +35,8 @@ func main() {
 
 	r.HandleFunc("/api/test", server.SendAPIStatus)
 
-	r.HandleFunc("/facts/duck/{id}", server.RespondWithFact(db)).Methods(http.MethodGet)
+	r.HandleFunc("/facts/duck/random", server.RespondWithRandomFact(db)).Methods(http.MethodGet)
+	r.HandleFunc("/facts/duck/{id:[0-9]+}", server.RespondWithFact(db)).Methods(http.MethodGet)
 
 	err = http.ListenAndServe(":8090", r)
 	if err != nil {

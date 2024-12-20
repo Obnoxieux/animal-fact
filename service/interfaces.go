@@ -8,4 +8,5 @@ import (
 type Service interface {
 	Type() string
 	GetByID(db *dbx.DB, id int) (model.Fact, error)
+	GetRandom(db *dbx.DB) (model.Fact, error)
 }
