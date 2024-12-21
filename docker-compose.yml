@@ -34,8 +34,3 @@ networks:
 
 volumes:
   pg_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./pg_data
