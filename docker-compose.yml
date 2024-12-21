@@ -1,6 +1,6 @@
 services:
   app:
-    image: obnoxieux/animal-facts:latest
+    image: obnoxieux/animal-fact:latest
     restart: unless-stopped
     environment:
       PG_DSN: ${PG_DSN}
