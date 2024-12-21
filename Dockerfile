@@ -10,7 +10,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Stage 2: Create a minimal container for the app
 FROM ubuntu:latest
-RUN apt install mc
 WORKDIR /app
 
 COPY --from=builder /app/main .
