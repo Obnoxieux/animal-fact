@@ -1,0 +1,41 @@
+services:
+  app:
+    image: obnoxieux/animal-facts:latest
+    restart: unless-stopped
+    environment:
+      PG_DSN: ${PG_DSN}
+    networks:
+      - proxy
+      - db-isolated
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.facts.rule=Host(`facts.obnx.dev`)"
+      - "traefik.http.routers.facts.entrypoints=websecure"
+      - "traefik.http.routers.facts.tls.certresolver=letsEncrypt"
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    networks:
+      - db-isolated
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+networks:
+  proxy:
+    external: true
+  db-isolated:
+
+volumes:
+  pg_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./pg_data
