@@ -33,10 +33,18 @@ func main() {
 
 	/** ---------------- Routes ------------------ **/
 
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		server.RenderTemplate(w, "index", nil)
+	})
+
 	r.HandleFunc("/api/test", server.SendAPIStatus)
 
 	r.HandleFunc("/facts/duck/random", server.RespondWithRandomFact(db)).Methods(http.MethodGet)
 	r.HandleFunc("/facts/duck/{id:[0-9]+}", server.RespondWithFact(db)).Methods(http.MethodGet)
+
+	/** ---------------- Static Assets ------------------ **/
+	fs := http.FileServer(http.Dir("./assets/"))
+	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 
 	err = http.ListenAndServe(":8090", r)
 	if err != nil {

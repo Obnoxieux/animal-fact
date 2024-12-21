@@ -94,4 +94,4 @@ components:
       properties:
         message:
           type: string
-          example: "Operation completed successfully."
+          example: "Operation completed/failed successfully."
