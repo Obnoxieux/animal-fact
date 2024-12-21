@@ -57,5 +57,7 @@ func main() {
 	err = http.ListenAndServe(":8090", r)
 	if err != nil {
 		log.Fatal(err)
+	} else {
+		log.Print("Listening for incoming connections on port 8090")
 	}
 }
