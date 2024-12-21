@@ -6,11 +6,14 @@ import (
 	"path/filepath"
 )
 
-const RootLayout = "layout.gohtml"
+const (
+	RootLayout      = "layout.gohtml"
+	TemplatesFolder = "templates"
+)
 
 func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
-	tmplPath := filepath.Join("templates", tmpl+".gohtml")
-	basePath := filepath.Join("templates", RootLayout)
+	tmplPath := filepath.Join(TemplatesFolder, tmpl+".gohtml")
+	basePath := filepath.Join(TemplatesFolder, RootLayout)
 
 	templates, err := template.ParseFiles(basePath, tmplPath)
 	if err != nil {

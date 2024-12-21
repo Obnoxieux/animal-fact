@@ -41,6 +41,14 @@ func main() {
 		server.RenderTemplate(w, "index", nil)
 	})
 
+	r.HandleFunc("/impressum", func(w http.ResponseWriter, r *http.Request) {
+		server.RenderTemplate(w, "impressum", nil)
+	})
+
+	r.HandleFunc("/privacy", func(w http.ResponseWriter, r *http.Request) {
+		server.RenderTemplate(w, "privacy", nil)
+	})
+
 	r.HandleFunc("/api/test", server.SendAPIStatus)
 
 	r.HandleFunc("/facts/duck/random", server.RespondWithRandomFact(db)).Methods(http.MethodGet)
