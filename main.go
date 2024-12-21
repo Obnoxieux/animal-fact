@@ -32,7 +32,7 @@ func main() {
 	r := mux.NewRouter()
 
 	/** ---------------- Static Assets ------------------ **/
-	fs := http.FileServer(http.Dir("./assets/"))
+	fs := http.FileServer(http.Dir("assets"))
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 
 	/** ---------------- Routes ------------------ **/
