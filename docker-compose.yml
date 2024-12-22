@@ -14,6 +14,7 @@ services:
       - "traefik.http.routers.facts.rule=Host(`facts.obnx.dev`)"
       - "traefik.http.routers.facts.entrypoints=websecure"
       - "traefik.http.routers.facts.tls.certresolver=letsEncrypt"
+      - "traefik.docker.network=proxy"
 
   database:
     image: postgres
