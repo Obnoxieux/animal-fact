@@ -23,8 +23,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_HOST_AUTH_METHOD: password
-    ports:
-      - "5432:5432"
+    #ports:
+     # - "5432:5432"
     networks:
       - db-isolated
     volumes:
