@@ -41,6 +41,10 @@ func main() {
 		server.RenderTemplate(w, "index", nil)
 	})
 
+	r.HandleFunc("/pond", func(w http.ResponseWriter, r *http.Request) {
+		server.RenderTemplate(w, "pond", nil)
+	})
+
 	r.HandleFunc("/impressum", func(w http.ResponseWriter, r *http.Request) {
 		server.RenderTemplate(w, "impressum", nil)
 	})
