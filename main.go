@@ -35,6 +35,9 @@ func main() {
 	fs := http.FileServer(http.Dir("assets"))
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 
+	/** ---------------- Middlewares ------------------ **/
+	r.Use(server.CORSMiddleware())
+
 	/** ---------------- Routes ------------------ **/
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

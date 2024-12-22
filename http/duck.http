@@ -2,7 +2,11 @@
 GET http://localhost:8090/api/test
 
 ### Get single duck fact
-GET /facts/duck/{{id}}
+GET http://localhost:8090/facts/duck/{{id}}
 
 ### Get random duck fact
-GET /facts/duck/random
+GET http://localhost:8090/facts/duck/random
+
+### CORS - Get random
+GET http://localhost:8090/facts/duck/random
+Origin: http://localhost:5173

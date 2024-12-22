@@ -6,6 +6,7 @@ services:
       - database
     environment:
       PG_DSN: ${PG_DSN}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
     networks:
       - proxy
       - db-isolated
