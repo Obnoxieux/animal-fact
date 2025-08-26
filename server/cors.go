@@ -1,10 +1,12 @@
 package server
 
 import (
-	"github.com/gorilla/mux"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 func CORSMiddleware() mux.MiddlewareFunc {
@@ -17,11 +19,8 @@ func CORSMiddleware() mux.MiddlewareFunc {
 			allowedOrigins := strings.Split(origEnv, ",")
 
 			origin := r.Header.Get("Origin")
-			for _, allowedOrigin := range allowedOrigins {
-				if origin == allowedOrigin {
-					w.Header().Set("Access-Control-Allow-Origin", origin)
-					break
-				}
+			if slices.Contains(allowedOrigins, origin) {
+				w.Header().Set("Access-Control-Allow-Origin", origin)
 			}
 			next.ServeHTTP(w, r)
 		})
